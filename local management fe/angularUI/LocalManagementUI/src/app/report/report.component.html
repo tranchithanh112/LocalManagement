@@ -1,0 +1,24 @@
+<nz-table [nzData]="emptyList">
+  <thead>
+    <tr>
+      <th>Thành phố </th>
+      <th>Quận</th>
+      <th>Phường</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <nz-select [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố " (ngModelChange)="onCityChange($event)">
+          <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel={{item.cityName}}></nz-option>
+        </nz-select>
+      </td>
+      <td>
+        <div [innerHTML]="districtsall"></div>
+      </td>
+      <td>
+        <div [innerHTML]="wardsall"></div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

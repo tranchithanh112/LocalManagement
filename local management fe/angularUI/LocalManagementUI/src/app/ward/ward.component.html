@@ -1,0 +1,50 @@
+<nz-table #basicTable [nzData]="wardList">
+  <thead>
+    <tr>
+      <th>Id Phường</th>
+      <th>Tên Phường</th>
+      <th>Quận </th>
+      <th>Thao tác </th>
+      <th>
+        <button nz-button [nzType]="'primary'" (click)="showAdd()"><span>Thêm
+            mới</span></button>
+        <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
+          <ng-container *nzModalContent>
+
+            <label> Tên Quận : </label>
+            <nz-select [(ngModel)]="districtId" nzPlaceHolder="Chọn quận">
+              <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId" nzLabel={{item.districtName}}>
+              </nz-option>
+            </nz-select>
+            <label> Tên Phường :
+              <input type="text" nz-input placeholder="tên phường " [(ngModel)]="wardName"
+                (keypress)="onKeyPress($event)">
+            </label>
+          </ng-container>
+        </nz-modal>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataitem of basicTable.data ">
+      <td>{{dataitem.wardId}}</td>
+      <td>{{dataitem.wardName}}</td>
+      <td>{{dataitem.district.districtName}}</td>
+      <td><i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>
+        <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.wardId)"></i>
+        <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateWard()">
+          <ng-container *nzModalContent>
+
+            <label> Tên Quận : </label>
+            <nz-select [(ngModel)]="districtId" nzPlaceHolder="Chọn quận ">
+              <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId" nzLabel={{item.districtName}}>
+              </nz-option>
+            </nz-select>
+            <label> Tên Phường :
+              <input type="text" nz-input placeholder="tên phường " [(ngModel)]="wardName"
+                (keypress)="onKeyUpdate($event)">
+            </label>
+          </ng-container>
+        </nz-modal>
+      </td>
+    </tr>

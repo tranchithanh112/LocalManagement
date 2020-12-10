@@ -1,0 +1,38 @@
+<nz-table #basicTable [nzData]="cityList">
+  <thead>
+    <tr>
+      <th>Id Thành phố</th>
+      <th>Tên Thành phố </th>
+      <th>Thao tác </th>
+      <th>
+        <button nz-button [nzType]="'primary'" (click)="showAdd()"><span>Thêm mới</span></button>
+        <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
+          <ng-container *nzModalContent>
+            <label> Tên thành phố :
+              <input type="text" nz-input placeholder="tên thành phố " [(ngModel)]="cityName"
+                (keypress)="onKeyPress($event)">
+            </label>
+          </ng-container>
+        </nz-modal>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataitem of basicTable.data">
+
+      <td>{{dataitem.cityId}}</td>
+      <td>{{dataitem.cityName}}</td>
+      <td><i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>
+        <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.cityId)"></i>
+        <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateCity()">
+          <ng-container *nzModalContent>
+            <label> Tên thành phố :
+              <input type="text" nz-input placeholder="tên thành phố " [(ngModel)]="cityName"
+                (keypress)="onKeyUpdate($event)">
+            </label>
+          </ng-container>
+        </nz-modal>
+      </td>
+
+    </tr>

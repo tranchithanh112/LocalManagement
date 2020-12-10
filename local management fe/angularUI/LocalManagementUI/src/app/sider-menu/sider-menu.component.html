@@ -1,0 +1,18 @@
+<div class="wrapper">
+
+  <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+    <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected>
+      <i nz-icon nzType="mail"></i>
+      <span>Menu</span>
+    </li>
+
+    <li nz-submenu nzTitle="Management" nzIcon="setting">
+      <ul>
+        <li routerLink="city" nz-menu-item>Thành phố</li>
+        <li routerLink="district" nz-menu-item>Quận/huyện</li>
+        <li routerLink="ward" nz-menu-item>Phường/xã</li>
+        <li routerLink="report" nz-menu-item>Báo cáo</li>
+      </ul>
+    </li>
+  </ul>
+</div>
