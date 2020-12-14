@@ -22,6 +22,7 @@ export class ReportComponent implements OnInit {
     console.log(event);
     this.service.getDistrictById(event).subscribe((data: any) => {
       this.dList = data;
+      this.wList = [];
     });
   }
   onDistrictChange(event: any) {
