@@ -25,7 +25,19 @@ namespace LocalManagement.Models
           .HasOne(p => p.District)
           .WithMany()
           .HasForeignKey(p => p.districtId);
+
+
+            // modelBuilder.Entity<City>()
+            //    .HasMany(p => p.Districts)
+            //    .WithOne()
+            //    .HasForeignKey(p => p.cityId);
+
+            //modelBuilder.Entity<District>()
+            //    .HasMany(p => p.Wards)
+            //    .WithOne()
+            //    .HasForeignKey(p => p.districtId);
         }
+            
 
             
 

@@ -26,7 +26,6 @@ export class DistrictComponent implements OnInit {
     this.isVisible2 = true;
     this.districtId = '0';
     this.districtName = '';
-
     console.log(this.cityId);
   }
 
@@ -57,6 +56,7 @@ export class DistrictComponent implements OnInit {
   refreshDistrictList() {
     this.service.getDistrictList().subscribe((data) => {
       this.districtList = data;
+      console.log(data);
     });
   }
 
@@ -64,7 +64,6 @@ export class DistrictComponent implements OnInit {
     this.refreshDistrictList();
     this.service.getCityList().subscribe((data) => {
       this.cityList = data;
-      this.getIdCity();
     });
   }
 

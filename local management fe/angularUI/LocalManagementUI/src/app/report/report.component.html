@@ -1,4 +1,4 @@
-<nz-table [nzData]="emptyList">
+<nz-table #basicTable [nzData]="cityList ">
   <thead>
     <tr>
       <th>Thành phố </th>
@@ -7,17 +7,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let item of basicTable.data  ">
       <td>
-        <nz-select [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố " (ngModelChange)="onCityChange($event)">
-          <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel={{item.cityName}}></nz-option>
-        </nz-select>
+        {{item.cityName}}
       </td>
       <td>
-        <div [innerHTML]="districtsall"></div>
+        {{item.districtName}}
       </td>
       <td>
-        <div [innerHTML]="wardsall"></div>
+        {{item.wardName}}
       </td>
     </tr>
   </tbody>

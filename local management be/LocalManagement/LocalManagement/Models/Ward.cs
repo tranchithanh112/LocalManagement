@@ -15,7 +15,9 @@ namespace LocalManagement.Models
         public string wardName { get; set; }
             
         public int districtId { get; set; }
+       
         public District District { get; set; }
+        
     }
     
 }

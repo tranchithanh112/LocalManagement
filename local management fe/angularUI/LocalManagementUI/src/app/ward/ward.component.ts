@@ -60,13 +60,11 @@ export class WardComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshWardList();
-    this.getIdDistrict();
+
     console.log();
     this.service.getDistrictList().subscribe((data) => {
       this.districtList = data;
-      this.getIdDistrict();
     });
-    console.log(this.districtIdList);
   }
 
   addClick() {
@@ -94,11 +92,7 @@ export class WardComponent implements OnInit {
       });
     }
   }
-  getIdDistrict() {
-    this.service.getDistrictId().subscribe((res) => {
-      this.districtIdList = res;
-    });
-  }
+
   onKeyPress(event: KeyboardEvent) {
     if (event.code === 'Enter') {
       this.addClick();

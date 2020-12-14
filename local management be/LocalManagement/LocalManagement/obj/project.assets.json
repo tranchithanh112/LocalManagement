@@ -12993,11 +12993,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\local management\\LocalManagement\\LocalManagement\\LocalManagement.csproj",
+      "projectUniqueName": "D:\\local management\\local management be\\LocalManagement\\LocalManagement\\LocalManagement.csproj",
       "projectName": "LocalManagement",
-      "projectPath": "D:\\local management\\LocalManagement\\LocalManagement\\LocalManagement.csproj",
+      "projectPath": "D:\\local management\\local management be\\LocalManagement\\LocalManagement\\LocalManagement.csproj",
       "packagesPath": "C:\\Users\\tranc\\.nuget\\packages\\",
-      "outputPath": "D:\\local management\\LocalManagement\\LocalManagement\\obj\\",
+      "outputPath": "D:\\local management\\local management be\\LocalManagement\\LocalManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

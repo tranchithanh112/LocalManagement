@@ -30,14 +30,12 @@ registerLocaleData(en);
     AppComponent,
     SiderMenuComponent,
     CityComponent,
-    
-   
-    
+
     DistrictComponent,
-    
+
     WardComponent,
-    
-    ReportComponent
+
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,9 +51,8 @@ registerLocaleData(en);
     NzInputModule,
     NzButtonModule,
     NzSelectModule,
-   
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

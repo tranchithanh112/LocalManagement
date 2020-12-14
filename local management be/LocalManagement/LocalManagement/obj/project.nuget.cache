@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BPoXHBsG+9e2gWSnRtYbbSP0l0D0sMx2mJL1dEkCDZVKodg6q3hzb0lv8DU8DiGAw1G7mqBq+oQEK9wreGbT9A==",
+  "dgSpecHash": "rUeJJ+MlMv6i2QBwvmb4ss7k0GRy+UMjOw34a0qqJQKxTPBMv5pSQNZu4guH7YUqT6WmUsnZs0XI4z9kfqoJ1w==",
   "success": true,
-  "projectFilePath": "D:\\local management\\LocalManagement\\LocalManagement\\LocalManagement.csproj",
+  "projectFilePath": "D:\\local management\\local management be\\LocalManagement\\LocalManagement\\LocalManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
