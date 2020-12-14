@@ -1,22 +1,45 @@
-<nz-table #basicTable [nzData]="cityList ">
-  <thead>
-    <tr>
-      <th>Thành phố </th>
-      <th>Quận</th>
-      <th>Phường</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of basicTable.data  ">
-      <td>
-        {{item.cityName}}
-      </td>
-      <td>
-        {{item.districtName}}
-      </td>
-      <td>
-        {{item.wardName}}
-      </td>
-    </tr>
-  </tbody>
-</nz-table>
+<div nz-row>
+  <div nz-col nzSpan="12">
+    <nz-select [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố " (ngModelChange)="onCityChange($event)">
+      <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel={{item.cityName}}></nz-option>
+    </nz-select>
+    <nz-table #districtTable [nzData]="dList">
+      <thead>
+        <tr>
+          <th>ID Quận </th>
+          <th>Quận</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of districtTable.data ">
+          <td>
+            {{item.districtId}}
+          </td>
+          <td>
+            {{item.districtName}}
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <div nz-col nzSpan="12">
+    <nz-select [(ngModel)]="districtId" nzPlaceHolder="Chọn Quận " (ngModelChange)="onDistrictChange($event)">
+      <nz-option *ngFor="let item of dList" [nzValue]="item.districtId" nzLabel={{item.districtName}}></nz-option>
+    </nz-select>
+    <nz-table #wardTable [nzData]="wList">
+      <thead>
+        <tr>
+          <th>ID Phường </th>
+          <th>Phường</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of wardTable.data">
+          <td>
+            {{item.wardId}}
+          </td>
+          <td>
+            {{item.wardName}}
+          </td>
+        </tr>
+      </tbody>

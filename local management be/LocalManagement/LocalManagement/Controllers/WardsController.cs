@@ -42,9 +42,9 @@ namespace LocalManagement.Controllers
         }
 
         [HttpGet("GetWard/{id}")]
-        public async Task<ActionResult<List<Ward>>> GetDistrict(int id)
+        public ActionResult<List<Ward>> GetDistrict(int id)
         {       
-            List<Ward> wards = await _context.Wards.Where(x => x.districtId == id).ToListAsync();
+            List<Ward> wards = _context.Wards.Where(x => x.districtId == id).ToList();
             return wards;
         }
 

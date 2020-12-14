@@ -22,7 +22,7 @@ import { WardComponent } from './ward/ward.component';
 import { ReportComponent } from './report/report.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-
+import { NzGridModule } from 'ng-zorro-antd/grid';
 registerLocaleData(en);
 
 @NgModule({
@@ -51,6 +51,7 @@ registerLocaleData(en);
     NzInputModule,
     NzButtonModule,
     NzSelectModule,
+    NzGridModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

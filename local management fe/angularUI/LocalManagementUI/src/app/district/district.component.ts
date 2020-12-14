@@ -92,11 +92,7 @@ export class DistrictComponent implements OnInit {
       });
     }
   }
-  getIdCity() {
-    this.service.getCityId().subscribe((res) => {
-      this.cityIdList = res;
-    });
-  }
+
   onKeyPress(event: KeyboardEvent) {
     if (event.code === 'Enter') {
       this.addClick();
