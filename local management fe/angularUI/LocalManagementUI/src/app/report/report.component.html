@@ -1,4 +1,4 @@
-<div nz-row>
+<div nz-row class="bg-image">
   <div nz-col nzSpan="12">
     <nz-select [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố " (ngModelChange)="onCityChange($event)">
       <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel={{item.cityName}}></nz-option>
