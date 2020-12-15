@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-ward',
   templateUrl: './ward.component.html',
@@ -35,10 +36,10 @@ export class WardComponent implements OnInit {
       wardId: this.wardId,
     };
     if (val.wardName == '' || val.districtId == null) {
-      alert('Mời bạn nhập đủ thông tin ');
+      this.message.info('Mời bạn nhập đủ thông tin ');
     } else {
       this.service.putWard(val).subscribe((res) => {
-        alert('Sửa thành công ');
+        this.message.info('Sửa thành công  ');
         this.refreshWardList();
       });
 
@@ -51,7 +52,10 @@ export class WardComponent implements OnInit {
     this.isVisible = false;
     this.isVisible2 = false;
   }
-  constructor(private service: SharedService) {}
+  constructor(
+    private service: SharedService,
+    private message: NzMessageService
+  ) {}
   refreshWardList() {
     this.service.getWardList().subscribe((data) => {
       this.wardList = data;
@@ -74,10 +78,10 @@ export class WardComponent implements OnInit {
       districtId: this.districtId,
     };
     if (val.wardName == '' || val.districtId == null) {
-      alert('Mời bạn nhập đủ thông tin ');
+      this.message.info('Mời bạn nhập đủ thông tin ');
     } else {
       this.service.postWard(val).subscribe((res) => {
-        alert('Added');
+        this.message.info('Thêm thành công  ');
         this.refreshWardList();
       });
       this.isVisible2 = false;
@@ -87,7 +91,7 @@ export class WardComponent implements OnInit {
   deleteClick(id: any) {
     if (confirm('Are you sure to delete this city ? ')) {
       this.service.deleteWard(id).subscribe((res) => {
-        alert('deleted');
+        this.message.info('Đã xóa ');
         this.refreshWardList();
       });
     }

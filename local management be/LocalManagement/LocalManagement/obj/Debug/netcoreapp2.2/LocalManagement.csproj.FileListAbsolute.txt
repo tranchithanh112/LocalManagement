@@ -27,10 +27,10 @@ D:\local management\local management be\LocalManagement\LocalManagement\bin\Debu
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.csprojAssemblyReference.cache
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.AssemblyInfoInputs.cache
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.AssemblyInfo.cs
-D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.csproj.CoreCompileInputs.cache
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.RazorAssemblyInfo.cache
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.RazorAssemblyInfo.cs
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.RazorTargetAssemblyInfo.cache
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.dll
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.pdb
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.genruntimeconfig.cache
+D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.csproj.CoreCompileInputs.cache

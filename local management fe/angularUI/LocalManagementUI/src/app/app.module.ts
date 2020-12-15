@@ -23,6 +23,7 @@ import { ReportComponent } from './report/report.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 registerLocaleData(en);
 
 @NgModule({
@@ -52,6 +53,7 @@ registerLocaleData(en);
     NzButtonModule,
     NzSelectModule,
     NzGridModule,
+    NzMessageModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

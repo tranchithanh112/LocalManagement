@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
@@ -30,12 +30,12 @@ export class CityComponent implements OnInit {
       cityId: this.cityId,
     };
     if (val.cityName == '') {
-      alert('Mời bạn nhập đủ thông tin ');
+      this.message.info('Mời bạn nhập đủ thông tin ');
     } else {
       console.log('Button ok clicked!');
 
       this.service.putCity(val).subscribe((res) => {
-        alert('Sửa thành công ');
+        this.message.info(`sửa thành công `);
         this.refreshCityList();
       });
     }
@@ -48,7 +48,10 @@ export class CityComponent implements OnInit {
     this.isVisible = false;
     this.isVisible2 = false;
   }
-  constructor(private service: SharedService) {}
+  constructor(
+    private service: SharedService,
+    private message: NzMessageService
+  ) {}
   refreshCityList() {
     this.service.getCityList().subscribe((data) => {
       this.cityList = data;
@@ -65,10 +68,10 @@ export class CityComponent implements OnInit {
       cityId: this.cityId,
     };
     if (val.cityName == '') {
-      alert('Mời bạn nhập đủ thông tin ');
+      this.message.info('Mời bạn nhập đủ thông tin ');
     } else {
       this.service.postCity(val).subscribe((res) => {
-        alert('Added');
+        this.message.info('Thêm thành công ');
         this.refreshCityList();
       });
       this.isVisible2 = false;
@@ -77,7 +80,7 @@ export class CityComponent implements OnInit {
   deleteClick(id: any) {
     if (confirm('Are you sure to delete this city ? ')) {
       this.service.deleteCity(id).subscribe((res) => {
-        alert('deleted');
+        this.message.info('Đã xóa  ');
         this.refreshCityList();
       });
     }

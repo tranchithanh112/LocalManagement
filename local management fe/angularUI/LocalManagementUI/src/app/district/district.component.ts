@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
 @Component({
   selector: 'app-district',
   templateUrl: './district.component.html',
@@ -36,10 +38,10 @@ export class DistrictComponent implements OnInit {
       districtId: this.districtId,
     };
     if (val.districtName == '' || val.cityId == null) {
-      alert('Mời bạn nhập đủ thông tin ');
+      this.message.info(`mời bạn nhập đầy đủ thông tin`);
     } else {
       this.service.putDistrict(val).subscribe((res) => {
-        alert('Sửa thành công ');
+        this.message.info(`Sửa thành công`);
         this.refreshDistrictList();
       });
 
@@ -52,7 +54,10 @@ export class DistrictComponent implements OnInit {
     this.isVisible = false;
     this.isVisible2 = false;
   }
-  constructor(private service: SharedService) {}
+  constructor(
+    private service: SharedService,
+    private message: NzMessageService
+  ) {}
   refreshDistrictList() {
     this.service.getDistrictList().subscribe((data) => {
       this.districtList = data;
@@ -74,11 +79,11 @@ export class DistrictComponent implements OnInit {
       districtId: this.districtId,
     };
     if (val.districtName == '' || val.cityId == null) {
-      alert('Mời bạn nhập đủ thông tin ');
+      this.message.info(`mời bạn nhập đầy đủ thông tin`);
     } else {
       console.log(val.cityId);
       this.service.postDistrict(val).subscribe((res) => {
-        alert('Added');
+        this.message.info(`thêm thành công`);
         this.refreshDistrictList();
       });
       this.isVisible2 = false;
