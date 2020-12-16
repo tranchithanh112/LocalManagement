@@ -24,6 +24,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzFormModule } from 'ng-zorro-antd/form';
 registerLocaleData(en);
 
 @NgModule({
@@ -54,6 +55,7 @@ registerLocaleData(en);
     NzSelectModule,
     NzGridModule,
     NzMessageModule,
+    NzFormModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

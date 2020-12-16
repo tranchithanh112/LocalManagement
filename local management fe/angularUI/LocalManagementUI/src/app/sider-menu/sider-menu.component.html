@@ -8,9 +8,17 @@
 
     <li nz-submenu nzTitle="Quản Lý" nzIcon="setting">
       <ul>
-        <li routerLink="city" nz-menu-item>Thành phố</li>
-        <li routerLink="district" nz-menu-item>Quận/huyện</li>
-        <li routerLink="ward" nz-menu-item>Phường/xã</li>
+        <li nz-submenu nzTitle="Thành phố">
+          <ul>
+            <li nz-menu-item routerLink="city">Thành phố</li>
+            <li nz-submenu nzTitle="Quận huyện ">
+              <ul>
+                <li nz-menu-item routerLink="district">Quận/huyện</li>
+                <li nz-menu-item routerLink="ward">Phường/xã</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
         <li routerLink="report" nz-menu-item>Báo cáo</li>
       </ul>
     </li>
