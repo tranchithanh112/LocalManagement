@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class SharedService {
   readonly Url = 'https://localhost:44398/api';
   constructor(private http: HttpClient) {}
-  getCityList(): Observable<any> {
+  getCityList(): Observable<any[]> {
     return this.http.get<any>(this.Url + '/cities');
   }
   getDistrictList(): Observable<any> {

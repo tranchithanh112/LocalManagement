@@ -1,4 +1,4 @@
-<nz-table #basicTable [nzData]="districtList">
+<nz-table [nzNoResult]="null" #basicTable [nzData]="districtList">
   <thead>
     <tr>
       <th>Id Quận</th>
@@ -12,7 +12,8 @@
         <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
           <ng-container *nzModalContent>
             <label> Tên Thành phố : </label>
-            <nz-select [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố ">
+            <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="cityId"
+              nzPlaceHolder="Chọn thành phố ">
               <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel="{{ item.cityName }}">
               </nz-option>
             </nz-select>
@@ -37,7 +38,8 @@
         <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateDistrict()">
           <ng-container *nzModalContent>
             <label> Tên Thành phố : </label>
-            <nz-select [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố ">
+            <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="cityId"
+              nzPlaceHolder="Chọn thành phố ">
               <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel="{{ item.cityName }}">
               </nz-option>
             </nz-select>

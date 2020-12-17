@@ -24,13 +24,7 @@ namespace LocalManagement.Controllers
             _context = context;
             _mapper = mapper;
         }
-        //GET : api/districts/listid
-        [HttpGet("listid")]
 
-        public async Task<ActionResult<List<int>>> GetDistrictId()
-        {
-            return await _context.Districts.Select(x => x.districtId).ToListAsync();
-        }
 
         // GET: api/Districts
         [HttpGet]
@@ -48,16 +42,7 @@ namespace LocalManagement.Controllers
             
         }
 
-        //api/districts/getall
-        [HttpGet("getall")]
-        public async Task<ActionResult<IEnumerable<City>>> GetAll()
-        {
-            var result = await _context.Wards.Include(x => x.District).ThenInclude(x => x.City)
-                .ToListAsync();
-            
-        
-            return Ok(result);
-        }
+       
 
         // GET: api/Districts/getDistrict/5
         [HttpGet("GetDistrict/{id}")]

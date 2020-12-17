@@ -31,13 +31,6 @@ namespace LocalManagement.Controllers
         {
             return _mapper.Map<List<CityView>>(await _context.Cities.ToListAsync());
         }
-        //GET : api/cities/listid
-        [HttpGet("listid")]
-
-        public async Task<ActionResult<List<int>>> GetCitiesId()
-        {
-            return await _context.Cities.Select(x=>x.cityId).ToListAsync();
-        }
 
 
         // GET: api/Cities/5

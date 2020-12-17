@@ -1,4 +1,4 @@
-<nz-table #basicTable [nzData]="wardList">
+<nz-table [nzNoResult]="null" #basicTable [nzData]="wardList">
   <thead>
     <tr>
       <th>Id Phường</th>
@@ -12,7 +12,8 @@
           <ng-container *nzModalContent>
 
             <label> Tên Quận : </label>
-            <nz-select [(ngModel)]="districtId" nzPlaceHolder="Chọn quận">
+            <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId"
+              nzPlaceHolder="Chọn quận">
               <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId" nzLabel={{item.districtName}}>
               </nz-option>
             </nz-select>
@@ -36,7 +37,8 @@
           <ng-container *nzModalContent>
 
             <label> Tên Quận : </label>
-            <nz-select [(ngModel)]="districtId" nzPlaceHolder="Chọn quận ">
+            <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId"
+              nzPlaceHolder="Chọn quận ">
               <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId" nzLabel={{item.districtName}}>
               </nz-option>
             </nz-select>
