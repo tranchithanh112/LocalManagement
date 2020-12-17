@@ -29,7 +29,7 @@
     <tr *ngFor="let dataitem of basicTable.data ">
       <td>{{dataitem.wardId}}</td>
       <td>{{dataitem.wardName}}</td>
-      <td>{{dataitem.district.districtName}}</td>
+      <td>{{dataitem.districtView.districtName}}</td>
       <td><i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>
         <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.wardId)"></i>
         <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateWard()">

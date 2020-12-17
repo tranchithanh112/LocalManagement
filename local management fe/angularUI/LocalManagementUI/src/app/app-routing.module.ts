@@ -6,14 +6,14 @@ import { ReportComponent } from './report/report.component';
 import { WardComponent } from './ward/ward.component';
 
 const routes: Routes = [
-  {path:"city", component:CityComponent},
-  {path:"district", component:DistrictComponent},
-  {path:"ward", component:WardComponent},
-  {path:"report", component:ReportComponent}
+  { path: 'city', component: CityComponent },
+  { path: 'district', component: DistrictComponent },
+  { path: 'ward', component: WardComponent },
+  { path: 'report', component: ReportComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

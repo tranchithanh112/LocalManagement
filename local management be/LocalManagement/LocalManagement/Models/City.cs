@@ -15,7 +15,7 @@ namespace LocalManagement.Models
         [Column(TypeName="nvarchar(500)")]
         public string cityName { get; set; }
 
-        public List<District> Districts { get; set; }
+        
         
        // public virtual District District { get; set; }
        // public virtual Ward Ward { get; set; }

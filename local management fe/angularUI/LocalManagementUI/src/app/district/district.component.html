@@ -30,7 +30,7 @@
     <tr *ngFor="let dataitem of basicTable.data">
       <td>{{ dataitem.districtId }}</td>
       <td>{{ dataitem.districtName }}</td>
-      <td>{{ dataitem.city.cityName }}</td>
+      <td>{{ dataitem.cityView.cityName }}</td>
       <td>
         <i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>
         <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.districtId)"></i>

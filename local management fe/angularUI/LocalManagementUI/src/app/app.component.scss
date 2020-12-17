@@ -24,7 +24,7 @@ background: linear-gradient(90deg, rgba(184,14,199,1) 0%, rgba(52,70,148,1) 48%,
   }
 
   nz-content {
-    background: rgba(16, 142, 233, 1);
+  
     color: #fff;
     min-height: 120px;
     line-height: 120px;
@@ -40,5 +40,8 @@ background: linear-gradient(90deg, rgba(184,14,199,1) 0%, rgba(52,70,148,1) 48%,
   nz-select {
     margin: 0 8px 10px 0;
     width: 120px;
+  }
+  .paging{
+    float:right;
   }
  

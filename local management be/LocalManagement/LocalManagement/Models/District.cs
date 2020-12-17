@@ -16,7 +16,7 @@ namespace LocalManagement.Models
 
         public int cityId { get; set; }
 
-        public virtual City City { get; set; }
-        public List<Ward> Wards { get; set; }
+        public  City City { get; set; }
+       
     }
 }

@@ -6,25 +6,30 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LocalManagement.Models;
+using AutoMapper;
+using LocalManagement.ViewModels;
 
 namespace LocalManagement.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : ControllerBase
     {
+        IMapper _mapper;
         private readonly APIDbcontext _context;
 
-        public CitiesController(APIDbcontext context)
+        public CitiesController(APIDbcontext context ,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Cities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<City>>> GetCities()
+        public async Task<ActionResult<List<CityView>>> GetCities()
         {
-            return await _context.Cities.ToListAsync();
+            return _mapper.Map<List<CityView>>(await _context.Cities.ToListAsync());
         }
         //GET : api/cities/listid
         [HttpGet("listid")]
@@ -37,7 +42,7 @@ namespace LocalManagement.Controllers
 
         // GET: api/Cities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<City>> GetCity(int id)
+        public async Task<ActionResult<CityView>> GetCity(int id)
         {
             var city = await _context.Cities.FindAsync(id);
 
@@ -46,27 +51,29 @@ namespace LocalManagement.Controllers
                 return NotFound();
             }
 
-            return city;
+            return _mapper.Map<CityView>(city);
         }
 
         // PUT: api/Cities/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCity(int id, City city)
+        [HttpPut("PutCity")]
+        public async Task<IActionResult> PutCity(CityView model)
         {
-            if (id != city.cityId)
+            var city = _context.Cities.Where(x=>x.cityId == model.cityId).FirstOrDefault();
+            if(city == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-
-            _context.Entry(city).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                city.cityName = model.cityName;
+                _context.Entry(city).State = EntityState.Modified;
+                _context.Update(city);
+                return Ok(await _context.SaveChangesAsync() > 0);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CityExists(id))
+                if (!CityExists(model.cityId))
                 {
                     return NotFound();
                 }
@@ -76,14 +83,15 @@ namespace LocalManagement.Controllers
                 }
             }
 
-            return NoContent();
+            
         }
 
         // POST: api/Cities
         [HttpPost]
-        public async Task<ActionResult<City>> PostCity(City city)
+        public async Task<ActionResult<City>> PostCity(CityView city)
         {
-            _context.Cities.Add(city);
+            var entity = _mapper.Map<City>(city);
+            _context.Cities.Add(entity);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCity", new { id = city.cityId }, city);
@@ -98,7 +106,7 @@ namespace LocalManagement.Controllers
             {
                 return NotFound();
             }
-
+            
             _context.Cities.Remove(city);
             await _context.SaveChangesAsync();
 

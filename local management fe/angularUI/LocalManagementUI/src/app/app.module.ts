@@ -25,6 +25,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 registerLocaleData(en);
 
 @NgModule({
@@ -56,6 +57,7 @@ registerLocaleData(en);
     NzGridModule,
     NzMessageModule,
     NzFormModule,
+    NzPaginationModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

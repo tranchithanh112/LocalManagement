@@ -21,6 +21,7 @@ export class ReportComponent implements OnInit {
   constructor(private service: SharedService) {}
   onCityChange(event: any) {
     console.log(event);
+
     this.dList = [];
     this.service.getDistrictById(event).subscribe((data: any) => {
       this.dList = data;

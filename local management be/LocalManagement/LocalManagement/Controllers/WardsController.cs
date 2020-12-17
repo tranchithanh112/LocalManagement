@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LocalManagement.Models;
+using AutoMapper;
+using LocalManagement.ViewModels;
 
 namespace LocalManagement.Controllers
 {
@@ -14,17 +16,25 @@ namespace LocalManagement.Controllers
     public class WardsController : ControllerBase
     {
         private readonly APIDbcontext _context;
-
-        public WardsController(APIDbcontext context)
+        IMapper _mapper;
+        public WardsController(APIDbcontext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Wards
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ward>>> GetWards()
+        public async Task<ActionResult<IEnumerable<WardView>>> GetWards()
         {
-            return await _context.Wards.Include(x=>x.District).ToListAsync();
+            var result=  await _context.Wards.Include(x=>x.District).Select(x => new WardView()
+            {
+               wardId = x.wardId,
+                districtId = x.districtId,
+                wardName = x.wardName,
+                DistrictView = _mapper.Map<DistrictView>(x.District)
+            }).ToListAsync();
+            return Ok(result);
         }
 
         // GET: api/Wards/5
@@ -42,37 +52,29 @@ namespace LocalManagement.Controllers
         }
 
         [HttpGet("GetWard/{id}")]
-        public ActionResult<List<Ward>> GetDistrict(int id)
-        {       
-            List<Ward> wards = _context.Wards.Where(x => x.districtId == id).ToList();
+        public async Task<ActionResult<List<WardView>>> GetDistrict(int id)
+        {
+            List<WardView> wards = _mapper.Map<List<WardView>>(await _context.Wards.Where(x => x.districtId == id).ToListAsync());
             return wards;
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
         // PUT: api/Wards/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWard(int id, Ward ward)
+        public async Task<IActionResult> PutWard(int id, WardView model)
         {
-            if (id != ward.wardId)
+            var ward = _context.Wards.Where(x => x.wardId == model.wardId).FirstOrDefault();
+            if (id != model.wardId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(ward).State = EntityState.Modified;
+            
 
             try
             {
+                ward.wardName = model.wardName;
+                _context.Entry(ward).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -92,9 +94,10 @@ namespace LocalManagement.Controllers
 
         // POST: api/Wards
         [HttpPost]
-        public async Task<ActionResult<Ward>> PostWard(Ward ward)
+        public async Task<ActionResult<Ward>> PostWard(WardView ward)
         {
-            _context.Wards.Add(ward);
+            var model = _mapper.Map<Ward>(ward);
+            _context.Wards.Add(model);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetWard", new { id = ward.wardId }, ward);

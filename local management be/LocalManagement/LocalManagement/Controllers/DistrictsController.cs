@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LocalManagement.Models;
+using AutoMapper;
+using LocalManagement.ViewModels;
 
 namespace LocalManagement.Controllers
 {
@@ -14,11 +16,13 @@ namespace LocalManagement.Controllers
     public class DistrictsController : ControllerBase
     {
         private readonly APIDbcontext _context;
+        IMapper _mapper;
        
 
-        public DistrictsController(APIDbcontext context)
+        public DistrictsController(APIDbcontext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         //GET : api/districts/listid
         [HttpGet("listid")]
@@ -30,9 +34,16 @@ namespace LocalManagement.Controllers
 
         // GET: api/Districts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<District>>> GetDistricts()
+        public async Task<ActionResult<IEnumerable<DistrictView>>> GetDistricts()
         {
-            var result = await _context.Districts.Include(x=>x.City).ToListAsync();
+            var result = await _context.Districts.Include(x => x.City)
+                                            .Select(x => new DistrictView() { 
+                                                districtId = x.districtId,
+                                                cityId = x.cityId,
+                                                districtName = x.districtName,
+                                                CityView = _mapper.Map<CityView>(x.City)
+                                             })
+                                            .ToListAsync();
             return Ok(result);
             
         }
@@ -50,65 +61,26 @@ namespace LocalManagement.Controllers
 
         // GET: api/Districts/getDistrict/5
         [HttpGet("GetDistrict/{id}")]
-        public async Task<ActionResult<List<District>>> GetDistrict(int id) 
+        public async Task<ActionResult<List<DistrictView>>> GetDistrict(int id) 
         {
-            List<District> districts = await _context.Districts.Where(x => x.cityId == id).ToListAsync();
+            List<DistrictView> districts = _mapper.Map<List<DistrictView>>( await _context.Districts.Where(x => x.cityId == id).ToListAsync());
             return districts;
         }
-
-
-        // GET: api/Districts/getward/5
-        [HttpGet("GetWard/{id}")]
-        public async Task<ActionResult> GetWard(int id)
-        {
-            var district = await _context.Districts.Where(x => x.cityId == id).Select(x => x.districtId).ToListAsync();
-            var result = string.Empty;
-
-
-            foreach (var item in district)
-            {
-                var wards = await _context.Wards.Where(x => x.districtId == item).Select(x => x.wardName).ToListAsync();
-                if (wards.Count == 0)
-                {
-                    result +="<br>";
-                }
-                foreach (var _item in wards) {
-                    result += _item + "<br>";
-                }
-                
-            }
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(new { district = result });
-        }
-
-
-
-
-
-
-
-
-
-
-
         // PUT: api/Districts/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDistrict(int id, District district)
+        public async Task<IActionResult> PutDistrict(int id, DistrictView model)
         {
-            if (id != district.districtId)
+            var district = _context.Districts.Where(x => x.cityId == model.cityId).FirstOrDefault();
+            if (id != model.districtId)
             {
                 return BadRequest();
             }
-
-            _context.Entry(district).State = EntityState.Modified;
+           
 
             try
             {
+                district.districtName = model.districtName;
+                _context.Entry(district).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -128,9 +100,10 @@ namespace LocalManagement.Controllers
 
         // POST: api/Districts
         [HttpPost]
-        public async Task<ActionResult<District>> PostDistrict(District district)
+        public async Task<ActionResult<District>> PostDistrict(DistrictView district)
         {
-            _context.Districts.Add(district);
+            var model = _mapper.Map<District>(district);
+            _context.Districts.Add(model);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetDistrict", new { id = district.districtId }, district);

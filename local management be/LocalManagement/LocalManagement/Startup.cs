@@ -13,6 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
+using LocalManagement.ViewModels.Automapper;
+
 
 namespace LocalManagement
 {
@@ -30,7 +33,9 @@ namespace LocalManagement
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<APIDbcontext>(options => options.UseSqlServer(Configuration.GetConnectionString("ManageConnection")));
+            
             services.AddMvc();
+            services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
