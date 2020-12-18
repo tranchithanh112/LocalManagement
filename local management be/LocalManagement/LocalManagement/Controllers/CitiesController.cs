@@ -48,25 +48,24 @@ namespace LocalManagement.Controllers
         }
 
         // PUT: api/Cities/5
-        [HttpPut("PutCity")]
-        public async Task<IActionResult> PutCity(CityView model)
+        [HttpPut("PutCity/{id}")]
+        public async Task<IActionResult> PutCity(int id ,CityView model)
         {
-            var city = _context.Cities.Where(x=>x.cityId == model.cityId).FirstOrDefault();
-            if(city == null)
+            if (id != model.cityId)
             {
-                return NotFound();
+                return BadRequest();
             }
+            City city = _mapper.Map<City>(model);
+
+            _context.Entry(city).State = EntityState.Modified;
 
             try
             {
-                city.cityName = model.cityName;
-                _context.Entry(city).State = EntityState.Modified;
-                _context.Update(city);
-                return Ok(await _context.SaveChangesAsync() > 0);
+                await _context.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (DbUpdateConcurrencyException)
             {
-                if (!CityExists(model.cityId))
+                if (!CityExists(id))
                 {
                     return NotFound();
                 }
@@ -76,7 +75,8 @@ namespace LocalManagement.Controllers
                 }
             }
 
-            
+            return NoContent();
+
         }
 
         // POST: api/Cities

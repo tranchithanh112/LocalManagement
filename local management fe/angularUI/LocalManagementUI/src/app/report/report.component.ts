@@ -25,7 +25,6 @@ export class ReportComponent implements OnInit {
     this.dList = [];
     this.service.getDistrictById(event).subscribe((data: any) => {
       this.dList = data;
-
       console.log(this.dList);
       this.districtId = '';
       this.wList = [];

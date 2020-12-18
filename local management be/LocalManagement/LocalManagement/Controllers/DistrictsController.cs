@@ -55,17 +55,16 @@ namespace LocalManagement.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDistrict(int id, DistrictView model)
         {
-            var district = _context.Districts.Where(x => x.cityId == model.cityId).FirstOrDefault();
             if (id != model.districtId)
             {
                 return BadRequest();
             }
-           
+            District district = _mapper.Map<District>(model);
+
+            _context.Entry(district).State = EntityState.Modified;
 
             try
             {
-                district.districtName = model.districtName;
-                _context.Entry(district).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

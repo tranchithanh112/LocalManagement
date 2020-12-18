@@ -22,7 +22,7 @@ export class SharedService {
     return this.http.post(this.Url + '/cities', val);
   }
   putCity(val: any) {
-    return this.http.put(this.Url + '/cities/PutCity', val);
+    return this.http.put(this.Url + '/cities/PutCity/' + val.cityId, val);
   }
   deleteCity(id: any) {
     return this.http.delete(this.Url + '/cities/' + id);

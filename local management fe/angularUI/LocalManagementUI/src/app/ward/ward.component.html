@@ -14,7 +14,8 @@
             <label> Tên Quận : </label>
             <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId"
               nzPlaceHolder="Chọn quận">
-              <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId" nzLabel={{item.districtName}}>
+              <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId"
+                nzLabel="{{item.districtName}} - {{item.cityView.cityName}} ">
               </nz-option>
             </nz-select>
             <label> Tên Phường :

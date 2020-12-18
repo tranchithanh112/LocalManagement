@@ -13,7 +13,6 @@ export class WardComponent implements OnInit {
   wardName!: string;
   wardId!: string;
   isVisible = false;
-
   isVisible2 = false;
   districtList: any[] = [];
   showModal(data: any): void {
@@ -42,7 +41,6 @@ export class WardComponent implements OnInit {
         this.message.info('Sửa thành công  ');
         this.refreshWardList();
       });
-
       this.handleCancel();
     }
   }
@@ -64,7 +62,6 @@ export class WardComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshWardList();
-
     console.log();
     this.service.getDistrictList().subscribe((data) => {
       this.districtList = data;

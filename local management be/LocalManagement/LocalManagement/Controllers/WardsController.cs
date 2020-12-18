@@ -63,18 +63,16 @@ namespace LocalManagement.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWard(int id, WardView model)
         {
-            var ward = _context.Wards.Where(x => x.wardId == model.wardId).FirstOrDefault();
             if (id != model.wardId)
             {
                 return BadRequest();
             }
+            Ward ward = _mapper.Map<Ward>(model);
 
-            
+            _context.Entry(ward).State = EntityState.Modified;
 
             try
             {
-                ward.wardName = model.wardName;
-                _context.Entry(ward).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

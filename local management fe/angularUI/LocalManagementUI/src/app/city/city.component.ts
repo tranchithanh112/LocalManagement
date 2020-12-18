@@ -57,11 +57,9 @@ export class CityComponent implements OnInit {
       this.cityList = data;
     });
   }
-
   ngOnInit(): void {
     this.refreshCityList();
   }
-
   addClick() {
     let val = {
       cityName: this.cityName,
