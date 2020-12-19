@@ -1,4 +1,5 @@
-<nz-table [nzNoResult]="null" #basicTable [nzData]="wardList">
+<nz-table [nzFrontPagination]="false" [nzNoResult]="null" #basicTable [nzData]="wardList"
+  (nzPageIndexChange)="onPageChange($event)" [nzTotal]="total" [nzPageIndex]="currentPage" [(nzPageSize)]="pageSize">
   <thead>
     <tr>
       <th>Id Phường</th>
@@ -40,7 +41,8 @@
             <label> Tên Quận : </label>
             <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId"
               nzPlaceHolder="Chọn quận ">
-              <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId" nzLabel={{item.districtName}}>
+              <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId"
+                nzLabel="{{item.districtName}} - {{item.cityView.cityName}} ">
               </nz-option>
             </nz-select>
             <label> Tên Phường :

@@ -14,9 +14,11 @@ export class DistrictComponent implements OnInit {
   districtName!: string;
   districtId!: string;
   isVisible = false;
-
   isVisible2 = false;
   cityList: any[] = [];
+  currentPage = 1;
+  total = 1;
+  pageSize = 4;
   showModal(data: any): void {
     this.isVisible = true;
     this.districtName = data.districtName;
@@ -59,10 +61,15 @@ export class DistrictComponent implements OnInit {
     private message: NzMessageService
   ) {}
   refreshDistrictList() {
-    this.service.getDistrictList().subscribe((data) => {
-      this.districtList = data;
-      console.log(data);
-    });
+    this.service
+      .getDistrictPage(this.currentPage, this.pageSize)
+      .subscribe((data: any) => {
+        this.districtList = data.quan;
+        this.total = data.totalCount;
+        this.currentPage = data.currentPage;
+        this.pageSize = data.pageSize;
+        console.log(data);
+      });
   }
 
   ngOnInit(): void {
@@ -105,5 +112,10 @@ export class DistrictComponent implements OnInit {
   }
   onKeyUpdate(event: KeyboardEvent) {
     if (event.code === 'Enter') this.updateDistrict();
+  }
+  onPageChange(event: any) {
+    console.log(event);
+    this.currentPage = event;
+    this.refreshDistrictList();
   }
 }

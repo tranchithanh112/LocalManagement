@@ -8,33 +8,70 @@ using Microsoft.EntityFrameworkCore;
 using LocalManagement.Models;
 using AutoMapper;
 using LocalManagement.ViewModels;
+using ManagementServices.Helper;
+using AuthorizeNet.Api.Contracts.V1;
+using  LocalManagement.Services;
 
 namespace LocalManagement.Controllers
 {
+    public class PagingParams
+    {
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        
+    }
+
+
+
 
     [Route("api/[controller]")]
     [ApiController]
+
     public class CitiesController : ControllerBase
     {
         IMapper _mapper;
         private readonly APIDbcontext _context;
 
-        public CitiesController(APIDbcontext context ,IMapper mapper)
+        public CitiesController(APIDbcontext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-
-        // GET: api/Cities
-        [HttpGet]
+        [HttpGet("getall")]
         public async Task<ActionResult<List<CityView>>> GetCities()
         {
             return _mapper.Map<List<CityView>>(await _context.Cities.ToListAsync());
         }
+        
 
 
-        // GET: api/Cities/5
-        [HttpGet("{id}")]
+        [HttpGet]
+        public ActionResult<PagedList<CityView>> GetthanhPhos([FromQuery] thamsoPhanTrang tsPhantrang)
+        {
+
+            IQueryable<CityView> cities = _context.Cities.Select(x => new CityView()
+            {
+                cityId = x.cityId,
+                cityName=x.cityName
+            });
+            //List<ThanhPhoView> thanhPhoViews = _mapper.Map<List<ThanhPhoView>>(thanhPhos);
+
+            var thanhphos = PagedList<CityView>.ToPagedList(cities, tsPhantrang.currentPage, tsPhantrang.PageSize);
+            var metadata = new
+            {
+                thanhphos,
+                thanhphos.TotalCount,
+                thanhphos.PageSize,
+                thanhphos.CurrentPage,
+                thanhphos.TotalPages,
+                thanhphos.HasNext,
+                thanhphos.HasPrevious
+            };
+
+            return Ok(metadata);
+        }
+            // GET: api/Cities/5
+            [HttpGet("{id}")]
         public async Task<ActionResult<CityView>> GetCity(int id)
         {
             var city = await _context.Cities.FindAsync(id);

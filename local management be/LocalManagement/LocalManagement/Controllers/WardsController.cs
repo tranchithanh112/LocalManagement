@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using LocalManagement.Models;
 using AutoMapper;
 using LocalManagement.ViewModels;
+using ManagementServices.Helper;
+using LocalManagement.Services;
 
 namespace LocalManagement.Controllers
 {
@@ -24,7 +26,7 @@ namespace LocalManagement.Controllers
         }
 
         // GET: api/Wards
-        [HttpGet]
+        [HttpGet("getall")]
         public async Task<ActionResult<IEnumerable<WardView>>> GetWards()
         {
             var result=  await _context.Wards.Include(x=>x.District).Select(x => new WardView()
@@ -35,6 +37,32 @@ namespace LocalManagement.Controllers
                 DistrictView = _mapper.Map<DistrictView>(x.District)
             }).ToListAsync();
             return Ok(result);
+        }
+        [HttpGet]
+        public ActionResult<PagedList<WardView>> GetQuan([FromQuery] thamsoPhanTrang tsPhantrang)
+        {
+
+            IQueryable<WardView> wards = _context.Wards.Include(x => x.District).Select(x => new WardView()
+            {
+                districtId = x.districtId,
+                wardId = x.wardId,
+                wardName = x.wardName,
+                DistrictView = _mapper.Map<DistrictView>(x.District)
+            });
+
+            var phuong = PagedList<WardView>.ToPagedList(wards, tsPhantrang.currentPage, tsPhantrang.PageSize);
+            var metadata = new
+            {
+                phuong,
+                phuong.TotalCount,
+                phuong.PageSize,
+                phuong.CurrentPage,
+                phuong.TotalPages,
+                phuong.HasNext,
+                phuong.HasPrevious
+            };
+
+            return Ok(metadata);
         }
 
         // GET: api/Wards/5

@@ -32,5 +32,5 @@ D:\local management\local management be\LocalManagement\LocalManagement\obj\Debu
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.dll
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.pdb
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.genruntimeconfig.cache
-D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.csproj.CoreCompileInputs.cache
 D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.csprojAssemblyReference.cache
+D:\local management\local management be\LocalManagement\LocalManagement\obj\Debug\netcoreapp2.2\LocalManagement.csproj.CoreCompileInputs.cache

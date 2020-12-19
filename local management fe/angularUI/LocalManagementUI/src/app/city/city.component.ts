@@ -13,6 +13,12 @@ export class CityComponent implements OnInit {
   isVisible = false;
   city!: any;
   isVisible2 = false;
+  loading: boolean = false;
+  currentPage = 1;
+  total = 1;
+  pageSize = 4;
+  meta: any;
+
   showModal(data: any): void {
     this.isVisible = true;
     this.cityName = data.cityName;
@@ -53,10 +59,19 @@ export class CityComponent implements OnInit {
     private message: NzMessageService
   ) {}
   refreshCityList() {
-    this.service.getCityList().subscribe((data) => {
-      this.cityList = data;
-    });
+    console.log(this.currentPage);
+    this.service
+      .getCityPage(this.currentPage, this.pageSize)
+      .subscribe((data: any) => {
+        this.cityList = data.thanhphos;
+        this.meta = data;
+        this.total = data.totalCount;
+        this.currentPage = data.currentPage;
+        console.log(data);
+        this.pageSize = data.pageSize;
+      });
   }
+
   ngOnInit(): void {
     this.refreshCityList();
   }
@@ -90,5 +105,11 @@ export class CityComponent implements OnInit {
   }
   onKeyUpdate(event: KeyboardEvent) {
     if (event.code === 'Enter') this.updateCity();
+  }
+
+  onPageChange(event: any) {
+    console.log(event);
+    this.currentPage = event;
+    this.refreshCityList();
   }
 }

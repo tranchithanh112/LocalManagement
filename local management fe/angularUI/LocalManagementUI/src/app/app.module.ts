@@ -24,9 +24,10 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { FilterNamePipe } from './filter-name.pipe';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -40,6 +41,8 @@ registerLocaleData(en);
     WardComponent,
 
     ReportComponent,
+
+    FilterNamePipe,
   ],
   imports: [
     BrowserModule,

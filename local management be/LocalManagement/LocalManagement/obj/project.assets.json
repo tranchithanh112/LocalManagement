@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "AuthorizeNet/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/AuthorizeNet.dll": {}
+        },
+        "runtime": {
+          "lib/AuthorizeNet.dll": {}
+        }
+      },
       "AutoMapper/10.1.1": {
         "type": "package",
         "dependencies": {
@@ -2996,6 +3005,22 @@
           "lib/netstandard1.6/NuGet.Frameworks.dll": {}
         }
       },
+      "ReflectionIT.Mvc.Paging/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "2.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "2.0.0",
+          "Microsoft.Extensions.FileProviders.Embedded": "2.0.0",
+          "Microsoft.Extensions.Options": "2.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp2.0/ReflectionIT.Mvc.Paging.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/ReflectionIT.Mvc.Paging.dll": {}
+        }
+      },
       "Remotion.Linq/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -4889,6 +4914,19 @@
     }
   },
   "libraries": {
+    "AuthorizeNet/2.0.1": {
+      "sha512": "r4Plr+meuOY40U9NXJtelt6SPMG61DYfUG0PPmz5QnhcyePm4ej6Vbvz+8VTtkJt2f1r0LhwC3K2adBggnU9Yw==",
+      "type": "package",
+      "path": "authorizenet/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "authorizenet.2.0.1.nupkg.sha512",
+        "authorizenet.nuspec",
+        "lib/AuthorizeNet.dll",
+        "lib/AuthorizeNet.xml"
+      ]
+    },
     "AutoMapper/10.1.1": {
       "sha512": "uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
       "type": "package",
@@ -8430,6 +8468,18 @@
         "lib/netstandard1.6/NuGet.Frameworks.xml",
         "nuget.frameworks.4.7.0.nupkg.sha512",
         "nuget.frameworks.nuspec"
+      ]
+    },
+    "ReflectionIT.Mvc.Paging/2.2.0": {
+      "sha512": "DBHu9kP5E8v3xh9zg3QOza/pav9MiczvXn3PFuqwgCc73RqCPMEgKTjK4P4v8m7+5AR2SqF4IqTW8yqYVtgGWQ==",
+      "type": "package",
+      "path": "reflectionit.mvc.paging/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp2.0/ReflectionIT.Mvc.Paging.dll",
+        "reflectionit.mvc.paging.2.2.0.nupkg.sha512",
+        "reflectionit.mvc.paging.nuspec"
       ]
     },
     "Remotion.Linq/2.2.0": {
@@ -13378,6 +13428,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "AuthorizeNet >= 2.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 7.0.0",
       "Automapper >= 10.1.1",
       "Microsoft.AspNet.Identity.EntityFramework >= 2.2.0",
@@ -13395,6 +13446,7 @@
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.BrowserLink >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.4",
+      "ReflectionIT.Mvc.Paging >= 2.2.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -13439,6 +13491,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "AuthorizeNet": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[7.0.0, )"
@@ -13514,6 +13570,10 @@
             "target": "Package",
             "version": "[2.2.4, )"
           },
+          "ReflectionIT.Mvc.Paging": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.6.3, )"
@@ -13534,6 +13594,16 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AuthorizeNet 2.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
+      "libraryId": "AuthorizeNet",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

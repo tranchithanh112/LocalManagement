@@ -8,14 +8,44 @@ import { Observable, of } from 'rxjs';
 export class SharedService {
   readonly Url = 'https://localhost:44398/api';
   constructor(private http: HttpClient) {}
+  getWardPage(currentPage: any, sizePage: any) {
+    return this.http.get(
+      this.Url +
+        '/wards' +
+        '?currentpage=' +
+        currentPage +
+        '&sizepage=' +
+        sizePage
+    );
+  }
   getCityList(): Observable<any[]> {
-    return this.http.get<any>(this.Url + '/cities');
+    return this.http.get<any>(this.Url + '/cities/getall');
+  }
+  getDistrictPage(currentPage: any, sizePage: any) {
+    return this.http.get(
+      this.Url +
+        '/districts' +
+        '?currentpage=' +
+        currentPage +
+        '&sizepage=' +
+        sizePage
+    );
+  }
+  getCityPage(currentPage: any, sizePage: any) {
+    return this.http.get(
+      this.Url +
+        '/cities' +
+        '?currentpage=' +
+        currentPage +
+        '&sizepage=' +
+        sizePage
+    );
   }
   getDistrictList(): Observable<any> {
-    return this.http.get<any>(this.Url + '/districts');
+    return this.http.get<any>(this.Url + '/districts/getall');
   }
   getWardList(): Observable<any> {
-    return this.http.get<any>(this.Url + '/wards');
+    return this.http.get<any>(this.Url + '/wards/getall');
   }
 
   postCity(val: any) {
@@ -62,5 +92,11 @@ export class SharedService {
   }
   getAll() {
     return this.http.get(this.Url + '/districts/getall');
+  }
+  getCityWithNum(num: any) {
+    return this.http.get(this.Url + '/cities/cityWithNum/' + num);
+  }
+  getCityPagination() {
+    return this.http.get(this.Url + '/cities/GetCityPagination');
   }
 }

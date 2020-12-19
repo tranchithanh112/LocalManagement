@@ -15,6 +15,9 @@ export class WardComponent implements OnInit {
   isVisible = false;
   isVisible2 = false;
   districtList: any[] = [];
+  currentPage = 1;
+  total = 1;
+  pageSize = 4;
   showModal(data: any): void {
     this.isVisible = true;
     this.wardName = data.wardName;
@@ -55,9 +58,14 @@ export class WardComponent implements OnInit {
     private message: NzMessageService
   ) {}
   refreshWardList() {
-    this.service.getWardList().subscribe((data) => {
-      this.wardList = data;
-    });
+    this.service
+      .getWardPage(this.currentPage, this.pageSize)
+      .subscribe((data: any) => {
+        this.wardList = data.phuong;
+        this.total = data.totalCount;
+        this.currentPage = data.currentPage;
+        this.pageSize = data.pageSize;
+      });
   }
 
   ngOnInit(): void {
@@ -101,5 +109,10 @@ export class WardComponent implements OnInit {
   }
   onKeyUpdate(event: KeyboardEvent) {
     if (event.code === 'Enter') this.updateWard();
+  }
+  onPageChange(event: any) {
+    console.log(event);
+    this.currentPage = event;
+    this.refreshWardList();
   }
 }

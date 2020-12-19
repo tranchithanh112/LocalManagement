@@ -1,4 +1,5 @@
-<nz-table [nzNoResult]="null" #basicTable [nzData]="cityList">
+<nz-table [nzFrontPagination]="false" [nzNoResult]="null" #basicTable [nzData]="cityList"
+  (nzPageIndexChange)="onPageChange($event)" [nzTotal]="total" [nzPageIndex]="currentPage" [(nzPageSize)]="pageSize">
   <thead>
     <tr>
       <th>Id Thành phố</th>
@@ -20,7 +21,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let dataitem of basicTable.data">
-
       <td>{{dataitem.cityId}}</td>
       <td>{{dataitem.cityName}}</td>
       <td><i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>

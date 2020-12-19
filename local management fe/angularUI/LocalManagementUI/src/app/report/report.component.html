@@ -3,7 +3,8 @@
   <div nz-col nzSpan="12">
     <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố "
       (ngModelChange)="onCityChange($event)">
-      <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel={{item.cityName}}></nz-option>
+      <nz-option *ngFor="let item of (cityList|filterName)" [nzValue]="item.cityId" nzLabel="{{item.cityName  }}">
+      </nz-option>
     </nz-select>
 
     <nz-table [nzNoResult]="null" #districtTable [nzData]="dList">
