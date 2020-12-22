@@ -1,0 +1,15 @@
+<nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
+  <ng-container *nzModalContent>
+    <label> Tên thành phố :
+      <input type="text" nz-input placeholder="tên thành phố " [(ngModel)]="cityName" (keypress)="onKeyAdd($event)">
+    </label>
+  </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateCity()">
+  <ng-container *nzModalContent>
+    <label> Tên thành phố :
+      <input type="text" nz-input placeholder="tên thành phố " [(ngModel)]="cityName" (keypress)="onKeyUpdate($event)">
+    </label>
+  </ng-container>
+</nz-modal>

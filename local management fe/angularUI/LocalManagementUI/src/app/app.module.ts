@@ -27,6 +27,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FilterNamePipe } from './filter-name.pipe';
+import { CityModalComponent } from './modals/city-modal/city-modal.component';
 
 registerLocaleData(en);
 
@@ -43,6 +44,8 @@ registerLocaleData(en);
     ReportComponent,
 
     FilterNamePipe,
+
+    CityModalComponent,
   ],
   imports: [
     BrowserModule,

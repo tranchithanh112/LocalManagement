@@ -18,35 +18,25 @@ export class CityComponent implements OnInit {
   total = 1;
   pageSize = 4;
   meta: any;
-
-  showModal(data: any): void {
+  public ct: any;
+  fromModal(event: any) {
+    console.log(event);
+    this.isVisible2 = event;
+    this.isVisible = event;
+  }
+  showEdit(data: any): void {
     this.isVisible = true;
-    this.cityName = data.cityName;
-    this.cityId = data.cityId;
+    this.ct = {
+      cityName: data.cityName,
+      cityId: data.cityId,
+    };
   }
   showAdd() {
     this.isVisible2 = true;
-    this.cityId = '0';
-    this.cityName = '';
-  }
-
-  updateCity() {
-    let val = {
-      cityName: this.cityName,
-      cityId: this.cityId,
+    this.ct = {
+      cityId: 0,
+      cityName: '',
     };
-    if (val.cityName == '') {
-      this.message.info('Mời bạn nhập đủ thông tin ');
-    } else {
-      console.log('Button ok clicked!');
-
-      this.service.putCity(val).subscribe((res) => {
-        this.message.info(`sửa thành công `);
-        this.refreshCityList();
-      });
-    }
-
-    this.handleCancel();
   }
 
   handleCancel(): void {
@@ -75,21 +65,7 @@ export class CityComponent implements OnInit {
   ngOnInit(): void {
     this.refreshCityList();
   }
-  addClick() {
-    let val = {
-      cityName: this.cityName,
-      cityId: this.cityId,
-    };
-    if (val.cityName == '') {
-      this.message.info('Mời bạn nhập đủ thông tin ');
-    } else {
-      this.service.postCity(val).subscribe((res) => {
-        this.message.info('Thêm thành công ');
-        this.refreshCityList();
-      });
-      this.isVisible2 = false;
-    }
-  }
+
   deleteClick(id: any) {
     if (confirm('Are you sure to delete this city ? ')) {
       this.service.deleteCity(id).subscribe((res) => {
@@ -97,14 +73,6 @@ export class CityComponent implements OnInit {
         this.refreshCityList();
       });
     }
-  }
-  onKeyPress(event: KeyboardEvent) {
-    if (event.code === 'Enter') {
-      this.addClick();
-    }
-  }
-  onKeyUpdate(event: KeyboardEvent) {
-    if (event.code === 'Enter') this.updateCity();
   }
 
   onPageChange(event: any) {
