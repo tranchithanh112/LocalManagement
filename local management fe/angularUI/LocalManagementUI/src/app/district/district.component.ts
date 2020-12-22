@@ -42,7 +42,6 @@ export class DistrictComponent implements OnInit {
     };
     this.isVisible2 = true;
   }
-
   constructor(
     private service: SharedService,
     private message: NzMessageService

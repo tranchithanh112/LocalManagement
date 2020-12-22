@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
@@ -39,11 +40,6 @@ export class CityComponent implements OnInit {
     };
   }
 
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
-    this.isVisible2 = false;
-  }
   constructor(
     private service: SharedService,
     private message: NzMessageService
@@ -61,11 +57,9 @@ export class CityComponent implements OnInit {
         this.pageSize = data.pageSize;
       });
   }
-
   ngOnInit(): void {
     this.refreshCityList();
   }
-
   deleteClick(id: any) {
     if (confirm('Are you sure to delete this city ? ')) {
       this.service.deleteCity(id).subscribe((res) => {
@@ -74,7 +68,6 @@ export class CityComponent implements OnInit {
       });
     }
   }
-
   onPageChange(event: any) {
     console.log(event);
     this.currentPage = event;

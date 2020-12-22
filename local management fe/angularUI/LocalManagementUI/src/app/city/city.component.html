@@ -15,7 +15,7 @@
   <tbody>
     <tr *ngFor="let dataitem of basicTable.data">
       <td>{{dataitem.cityId}}</td>
-      <td>{{dataitem.cityName}}</td>
+      <td>{{dataitem.cityName | titlecase  }}</td>
       <td><i nz-icon nzType="edit" nzTheme="outline" (click)="showEdit(dataitem)"></i>
         <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.cityId)"></i>
         <app-city-modal *ngIf="isVisible" [isVisible]="isVisible" (close)="fromModal($event) " [ct]="ct">

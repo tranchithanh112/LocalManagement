@@ -30,7 +30,7 @@ import { FilterNamePipe } from './filter-name.pipe';
 import { CityModalComponent } from './modals/city-modal/city-modal.component';
 import { DistrictModalComponent } from './modals/district-modal/district-modal.component';
 import { WardModalComponent } from './modals/ward-modal/ward-modal.component';
-
+import { CommonModule } from '@angular/common';
 registerLocaleData(en);
 
 @NgModule({
@@ -70,7 +70,7 @@ registerLocaleData(en);
     NzGridModule,
     NzMessageModule,
     NzFormModule,
-
+    CommonModule,
     NzPaginationModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

@@ -41,23 +41,6 @@ export class WardComponent implements OnInit {
     };
   }
 
-  updateWard() {
-    let val = {
-      wardName: this.wardName,
-      districtId: this.districtId,
-      wardId: this.wardId,
-    };
-    if (val.wardName == '' || val.districtId == null) {
-      this.message.info('Mời bạn nhập đủ thông tin ');
-    } else {
-      this.service.putWard(val).subscribe((res) => {
-        this.message.info('Sửa thành công  ');
-        this.refreshWardList();
-      });
-      this.handleCancel();
-    }
-  }
-
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
@@ -85,24 +68,6 @@ export class WardComponent implements OnInit {
       this.districtList = data;
     });
   }
-
-  addClick() {
-    let val = {
-      wardName: this.wardName,
-      wardId: this.wardId,
-      districtId: this.districtId,
-    };
-    if (val.wardName == '' || val.districtId == null) {
-      this.message.info('Mời bạn nhập đủ thông tin ');
-    } else {
-      this.service.postWard(val).subscribe((res) => {
-        this.message.info('Thêm thành công  ');
-        this.refreshWardList();
-      });
-      this.isVisible2 = false;
-      console.log(this.wardId);
-    }
-  }
   deleteClick(id: any) {
     if (confirm('Are you sure to delete this city ? ')) {
       this.service.deleteWard(id).subscribe((res) => {
@@ -110,15 +75,6 @@ export class WardComponent implements OnInit {
         this.refreshWardList();
       });
     }
-  }
-
-  onKeyPress(event: KeyboardEvent) {
-    if (event.code === 'Enter') {
-      this.addClick();
-    }
-  }
-  onKeyUpdate(event: KeyboardEvent) {
-    if (event.code === 'Enter') this.updateWard();
   }
   onPageChange(event: any) {
     console.log(event);
