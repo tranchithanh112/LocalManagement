@@ -18,17 +18,27 @@ export class WardComponent implements OnInit {
   currentPage = 1;
   total = 1;
   pageSize = 4;
+  public wd: any;
+  fromModal(event: any) {
+    console.log(event);
+    this.isVisible2 = event;
+    this.isVisible = event;
+  }
   showModal(data: any): void {
     this.isVisible = true;
-    this.wardName = data.wardName;
-    this.districtId = data.districtId;
-    this.wardId = data.wardId;
+    this.wd = {
+      wardName: data.wardName,
+      wardId: data.wardId,
+      districtId: data.districtId,
+    };
   }
   showAdd() {
     this.isVisible2 = true;
-    this.wardId = '0';
-    this.wardName = '';
-    this.districtId = null;
+    this.wd = {
+      wardName: '',
+      districtId: null,
+      wardId: 0,
+    };
   }
 
   updateWard() {

@@ -29,6 +29,7 @@ export class DistrictModalComponent implements OnInit {
     console.log(this.districtName);
     this.cityId = this.dt.cityId;
     this.districtId = this.dt.districtId;
+
     this.service.getCityList().subscribe((data) => {
       this.cityList = data;
     });

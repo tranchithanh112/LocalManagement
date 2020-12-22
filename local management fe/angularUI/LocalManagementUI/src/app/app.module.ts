@@ -29,6 +29,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { FilterNamePipe } from './filter-name.pipe';
 import { CityModalComponent } from './modals/city-modal/city-modal.component';
 import { DistrictModalComponent } from './modals/district-modal/district-modal.component';
+import { WardModalComponent } from './modals/ward-modal/ward-modal.component';
 
 registerLocaleData(en);
 
@@ -49,6 +50,8 @@ registerLocaleData(en);
     CityModalComponent,
 
     DistrictModalComponent,
+
+    WardModalComponent,
   ],
   imports: [
     BrowserModule,

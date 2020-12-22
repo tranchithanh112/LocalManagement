@@ -9,7 +9,9 @@
       <th>
         <button nz-button [nzType]="'primary'" (click)="showAdd()"><span>Thêm
             mới</span></button>
-        <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
+        <app-ward-modal *ngIf="isVisible2" [isVisible2]="isVisible2" (closeWard)="fromModal($event) " [wd]="wd">
+        </app-ward-modal>
+        <!-- <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
           <ng-container *nzModalContent>
 
             <label> Tên Quận : </label>
@@ -24,7 +26,7 @@
                 (keypress)="onKeyPress($event)">
             </label>
           </ng-container>
-        </nz-modal>
+        </nz-modal> -->
       </th>
     </tr>
   </thead>
@@ -35,7 +37,9 @@
       <td>{{dataitem.districtView.districtName}}</td>
       <td><i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>
         <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.wardId)"></i>
-        <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateWard()">
+        <app-ward-modal *ngIf="isVisible" [isVisible]="isVisible" (closeWard)="fromModal($event) " [wd]="wd">
+        </app-ward-modal>
+        <!-- <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateWard()">
           <ng-container *nzModalContent>
 
             <label> Tên Quận : </label>
@@ -50,6 +54,6 @@
                 (keypress)="onKeyUpdate($event)">
             </label>
           </ng-container>
-        </nz-modal>
+        </nz-modal> -->
       </td>
     </tr>

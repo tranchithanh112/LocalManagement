@@ -1,0 +1,31 @@
+<nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
+  <ng-container *nzModalContent>
+
+    <label> Tên Quận : </label>
+    <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId" nzPlaceHolder="Chọn quận">
+      <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId"
+        nzLabel="{{item.districtName}} - {{item.cityView.cityName}} ">
+      </nz-option>
+    </nz-select>
+    <label> Tên Phường :
+      <input type="text" nz-input placeholder="tên phường " [(ngModel)]="wardName" (keypress)="onKeyPress($event)">
+    </label>
+  </ng-container>
+</nz-modal>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateWard()">
+  <ng-container *nzModalContent>
+
+    <label> Tên Quận : </label>
+    <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId" nzPlaceHolder="Chọn quận ">
+      <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId"
+        nzLabel="{{item.districtName}} - {{item.cityView.cityName}} ">
+      </nz-option>
+    </nz-select>
+    <label> Tên Phường :
+      <input type="text" nz-input placeholder="tên phường " [(ngModel)]="wardName" (keypress)="onKeyUpdate($event)">
+    </label>
+  </ng-container>
+</nz-modal>
