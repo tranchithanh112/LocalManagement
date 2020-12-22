@@ -10,21 +10,8 @@
         <button nz-button [nzType]="'primary'" (click)="showAdd()">
           <span>Thêm mới</span>
         </button>
-        <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
-          <ng-container *nzModalContent>
-            <label> Tên Thành phố : </label>
-            <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="cityId"
-              nzPlaceHolder="Chọn thành phố ">
-              <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel="{{ item.cityName }}">
-              </nz-option>
-            </nz-select>
-            <label>
-              Tên Quận :
-              <input type="text" nz-input placeholder="tên quận " [(ngModel)]="districtName"
-                (keypress)="onKeyPress($event)" />
-            </label>
-          </ng-container>
-        </nz-modal>
+        <app-district-modal *ngIf="isVisible2" [isVisible2]="isVisible2" (closeDistrict)="fromModal($event) " [dt]="dt">
+        </app-district-modal>
       </th>
     </tr>
   </thead>
@@ -34,23 +21,10 @@
       <td>{{ dataitem.districtName }}</td>
       <td>{{ dataitem.cityView.cityName }}</td>
       <td>
-        <i nz-icon nzType="edit" nzTheme="outline" (click)="showModal(dataitem)"></i>
+        <i nz-icon nzType="edit" nzTheme="outline" (click)="showEdit(dataitem)"></i>
         <i nz-icon nzDanger nzType="delete" nzTheme="outline" (click)="deleteClick(dataitem.districtId)"></i>
-        <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa" (nzOnCancel)="handleCancel()" (nzOnOk)="updateDistrict()">
-          <ng-container *nzModalContent>
-            <label> Tên Thành phố : </label>
-            <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="cityId"
-              nzPlaceHolder="Chọn thành phố ">
-              <nz-option *ngFor="let item of cityList" [nzValue]="item.cityId" nzLabel="{{ item.cityName }}">
-              </nz-option>
-            </nz-select>
-            <label>
-              Tên Quận :
-              <input type="text" nz-input placeholder="tên quận " [(ngModel)]="districtName"
-                (keypress)="onKeyUpdate($event)" />
-            </label>
-          </ng-container>
-        </nz-modal>
+        <app-district-modal *ngIf="isVisible" [isVisible]="isVisible" (closeDistrict)="fromModal($event) " [dt]="dt">
+        </app-district-modal>
       </td>
     </tr>
   </tbody>
