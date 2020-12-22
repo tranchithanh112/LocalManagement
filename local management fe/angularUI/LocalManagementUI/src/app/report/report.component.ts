@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
-
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -21,7 +20,6 @@ export class ReportComponent implements OnInit {
   constructor(private service: SharedService) {}
   onCityChange(event: any) {
     console.log(event);
-
     this.dList = [];
     this.service.getDistrictById(event).subscribe((data: any) => {
       this.dList = data;

@@ -1,6 +1,5 @@
 <nz-modal [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()" (nzOnOk)="addClick()">
   <ng-container *nzModalContent>
-
     <label> Tên Quận : </label>
     <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="districtId" nzPlaceHolder="Chọn quận">
       <nz-option *ngFor="let item of districtList" [nzValue]="item.districtId"

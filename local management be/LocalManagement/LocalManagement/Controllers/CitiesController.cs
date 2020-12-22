@@ -18,11 +18,7 @@ namespace LocalManagement.Controllers
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-        
     }
-
-
-
 
     [Route("api/[controller]")]
     [ApiController]

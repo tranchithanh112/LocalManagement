@@ -17,7 +17,7 @@ export class CityComponent implements OnInit {
   loading: boolean = false;
   currentPage = 1;
   total = 1;
-  pageSize = 4;
+  pageSize = 5;
   meta: any;
   public ct: any;
   fromModal(event: any) {

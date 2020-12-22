@@ -17,7 +17,7 @@ export class WardComponent implements OnInit {
   districtList: any[] = [];
   currentPage = 1;
   total = 1;
-  pageSize = 4;
+  pageSize = 5;
   public wd: any;
   fromModal(event: any) {
     console.log(event);
@@ -40,7 +40,6 @@ export class WardComponent implements OnInit {
       wardId: 0,
     };
   }
-
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
@@ -60,7 +59,6 @@ export class WardComponent implements OnInit {
         this.pageSize = data.pageSize;
       });
   }
-
   ngOnInit(): void {
     this.refreshWardList();
     console.log();

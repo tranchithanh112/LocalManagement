@@ -9,7 +9,7 @@ namespace LocalManagement.Services
     {
         const int maxPageSize = 50;
         public int currentPage { get; set; } = 1;
-        public int _pagesize = 4;
+        public int _pagesize = 5;
         public int PageSize
         {
             get
