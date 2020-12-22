@@ -1,12 +1,12 @@
 <nz-layout>
   <nz-header>
-    <div>
-      <h1> <a href="/">Local Management</a>
+    <div class="top">
+      <h1> <a href="/"><i nz-icon [nzType]="'home'"></i>Local Management</a>
       </h1>
     </div>
   </nz-header>
   <nz-layout>
-    <nz-sider>
+    <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
       <app-sider-menu></app-sider-menu>
     </nz-sider>
     <nz-content>
