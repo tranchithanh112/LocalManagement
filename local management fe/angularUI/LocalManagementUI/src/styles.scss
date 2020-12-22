@@ -2,12 +2,7 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
-.bg-image{
-    background-image:url(./app/image.jpg);
-    background-repeat:no-repeat;
-    background-size:cover;
-    height:100%;
-}
+
 i{
     cursor: pointer;
     padding:3px;
@@ -23,8 +18,7 @@ td{
    background:#eaeaea
 }
 nz-table{
-    background: rgb(184,14,199);
-background: linear-gradient(90deg, rgba(184,14,199,1) 0%, rgba(52,70,148,1) 48%, rgba(198,27,74,1) 100%);
+    background: linear-gradient(to right, #bdc3c7, #2c3e50);
     color: #fff;
 }
 nz-select{

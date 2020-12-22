@@ -1,5 +1,5 @@
-<nz-table [nzFrontPagination]="false" [nzNoResult]="null" #basicTable [nzData]="districtList"
-  (nzPageIndexChange)="onPageChange($event)" [nzTotal]="total" [nzPageIndex]="currentPage" [(nzPageSize)]="pageSize">
+<nz-table [nzFrontPagination]="false" #basicTable [nzData]="districtList" (nzPageIndexChange)="onPageChange($event)"
+  [nzTotal]="total" [nzPageIndex]="currentPage" [(nzPageSize)]="pageSize">
   <thead>
     <tr>
       <th>Id Quận</th>

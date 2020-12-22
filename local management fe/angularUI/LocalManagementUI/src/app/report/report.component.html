@@ -1,4 +1,4 @@
-<div nz-row class="bg-image">
+<div nz-row>
 
   <div nz-col nzSpan="12">
     <nz-select nzShowSearch nzAllowClear [nzShowArrow]="false" [(ngModel)]="cityId" nzPlaceHolder="Chọn thành phố "
@@ -7,7 +7,7 @@
       </nz-option>
     </nz-select>
 
-    <nz-table [nzNoResult]="null" #districtTable [nzData]="dList">
+    <nz-table #districtTable [nzData]="dList">
 
       <thead>
 
@@ -33,7 +33,7 @@
       (ngModelChange)="onDistrictChange($event)">
       <nz-option *ngFor="let item of dList" [nzValue]="item.districtId" nzLabel={{item.districtName}}></nz-option>
     </nz-select>
-    <nz-table [nzNoResult]="null" #wardTable [nzData]="wList">
+    <nz-table #wardTable [nzData]="wList">
       <thead>
         <tr>
           <th>ID Phường </th>
