@@ -31,6 +31,7 @@ import { CityModalComponent } from './modals/city-modal/city-modal.component';
 import { DistrictModalComponent } from './modals/district-modal/district-modal.component';
 import { WardModalComponent } from './modals/ward-modal/ward-modal.component';
 import { CommonModule } from '@angular/common';
+import { ReportTreeComponent } from './report/report-tree/report-tree.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -52,6 +53,8 @@ registerLocaleData(en);
     DistrictModalComponent,
 
     WardModalComponent,
+
+    ReportTreeComponent,
   ],
   imports: [
     BrowserModule,

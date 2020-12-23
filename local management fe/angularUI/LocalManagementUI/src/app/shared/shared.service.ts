@@ -90,8 +90,8 @@ export class SharedService {
   getWardById(id: any) {
     return this.http.get(this.Url + '/wards/GetWard/' + id);
   }
-  getAll() {
-    return this.http.get(this.Url + '/districts/getall');
+  getTree(): Observable<any> {
+    return this.http.get<any>(this.Url + '/values');
   }
   getCityWithNum(num: any) {
     return this.http.get(this.Url + '/cities/cityWithNum/' + num);

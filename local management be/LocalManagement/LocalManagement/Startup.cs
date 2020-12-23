@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using AutoMapper;
 using LocalManagement.ViewModels.Automapper;
 using ReflectionIT.Mvc.Paging;
+using LocalManagement.Services;
 
 namespace LocalManagement
 {
@@ -33,6 +34,7 @@ namespace LocalManagement
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<APIDbcontext>(options => options.UseSqlServer(Configuration.GetConnectionString("ManageConnection"), builder => builder.UseRowNumberForPaging()));
+            services.AddTransient<Service>();
             services.AddPaging();
             services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
